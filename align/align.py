@@ -108,6 +108,25 @@ class NeedlemanWunsch:
         _read_sub_matrix as an example.
         Don't forget to comment your code!
         """
+        """
+        This function reads in two sequences (presumably of biological origin; nucleotides or amino acids). 
+        It fills in a series of matrices with scores accordign to three possible moves: matching sequence A and sequence B,
+        introducing a gap in sequence A, or introducing a gap in sequence B. The indices of these moves are stored in pointer matrices.
+        This function then calls the backtrace method to finalize.
+
+        Parameters:
+            seqA: str
+                Biological sequence of interest, can be composed of nucleotides, or in the case of this assignment, amino acids.
+            seqB: str
+                Same as seqA, but just a different sequence (with some degree of homology to seqA, presumably)
+
+        Returns:
+
+            Tuple: float, str, str
+                This function returns a tuple that is created by the backtrace method. The structure of the tuple is as follows:
+                alignment score, sequence A alignment, sequence B alignment. 
+        """
+
         # Initialize 6 matrix private attributes for use in alignment
         # create matrices for alignment scores and gaps
         self._align_matrix = np.ones((len(seqA) + 1, len(seqB) + 1)) * -np.inf
@@ -167,7 +186,7 @@ class NeedlemanWunsch:
                 self._back[i, j] = np.argmax(alignment_match)
                 self._back_A[i, j] = np.argmax(insert_gapA)
                 self._back_B[i, j] = np.argmax(insert_gapB)
-                
+
         return self._backtrace()
 
     def _backtrace(self) -> Tuple[float, str, str]:

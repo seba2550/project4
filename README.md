@@ -1,3 +1,5 @@
+![BuildStatus](https://github.com/seba2550/project4/actions/workflows/pytest.yml/badge.svg)
+
 # Project 4
 Needleman Wunsch Algorithm
 
